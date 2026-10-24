@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 
 internal static class Program
@@ -32,3 +33,6 @@ internal static class Program
         Console.WriteLine(sum);
     }
 }
+
+
+// 繰り返し処理の中にリストを内包させればいいんじゃ？
