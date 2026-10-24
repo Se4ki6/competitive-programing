@@ -1,0 +1,13 @@
+.study/
+/appsettings.local.json
+problems/**/statement.html
+problems/**/statement.html.tmp
+problems/**/statement.md
+problems/**/statement.md.tmp
+**/bin/
+**/obj/
+
+*.png
+*.jpg
+*.jpeg
+*.gif
