@@ -70,17 +70,19 @@ dotnet run --project tools/AtCoderStudy -- start abc300_b
 
 作成されるフォルダは次の形です。既存のフォルダやファイルは上書きしません。
 
+新しい問題は `atcoder_problems/` に作成します。`problems/` にある問題も着手済みとして認識し、重複作成を防ぎます。`statement` は既存の問題フォルダに保存します。
+
 同期済みの問題情報がない場合も、`abc480_a` のような問題IDからコンテストIDを判定してフォルダを作成します。この場合の問題名と難易度は未確認として記録するため、公式の問題ページで確認してください。
 
 ```text
-problems/abc300/abc300_b/
+atcoder_problems/abc300/abc300_b/
 ├── README.md        # 問題リンク、要約、自分の方針と振り返り
 ├── Program.cs       # 自分のC#解答
 ├── Solution.csproj  # ローカル実行用
 └── editorial.md     # 模範解答の要点、参考リンク、自分の解答との比較
 ```
 
-解答は `dotnet run --project problems/abc300/abc300_b/Solution.csproj` で実行できます。AtCoderへ提出するときは `Program.cs` のコードを提出します。`README.md` に問題文の要約を自分の言葉で記録し、問題本文と模範解答の参照先には公式リンクを使います。
+解答は `dotnet run --project atcoder_problems/abc300/abc300_b/Solution.csproj` で実行できます。AtCoderへ提出するときは `Program.cs` のコードを提出します。`README.md` に問題文の要約を自分の言葉で記録し、問題本文と模範解答の参照先には公式リンクを使います。
 
 ## 公式問題文を保存する
 

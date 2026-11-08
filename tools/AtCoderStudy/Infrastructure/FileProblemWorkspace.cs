@@ -5,25 +5,31 @@ namespace AtCoderStudy.Infrastructure;
 
 internal sealed class FileProblemWorkspace(string root) : IProblemWorkspace
 {
-    private string ProblemsRoot => Path.Combine(root, "problems");
+    private string ProblemsRoot => Path.Combine(root, "atcoder_problems");
+    private string LegacyProblemsRoot => Path.Combine(root, "problems");
+    private IEnumerable<string> ProblemRoots => [ProblemsRoot, LegacyProblemsRoot];
 
     public IReadOnlySet<string> GetStartedProblems()
     {
         var started = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
-        if (!Directory.Exists(ProblemsRoot)) return started;
+        foreach (var problemsRoot in ProblemRoots)
+        {
+            if (!Directory.Exists(problemsRoot)) continue;
 
-        foreach (var contest in Directory.EnumerateDirectories(ProblemsRoot))
-        foreach (var problem in Directory.EnumerateDirectories(contest))
-            started.Add(IdRules.ProblemKey(Path.GetFileName(contest), Path.GetFileName(problem)));
+            foreach (var contest in Directory.EnumerateDirectories(problemsRoot))
+            foreach (var problem in Directory.EnumerateDirectories(contest))
+                started.Add(IdRules.ProblemKey(Path.GetFileName(contest), Path.GetFileName(problem)));
+        }
         return started;
     }
 
     public async Task<string> CreateAsync(ProblemEntry problem)
     {
-        var directory = Path.Combine(ProblemsRoot, problem.ContestId, problem.Id);
-        if (Directory.Exists(directory))
-            throw new InvalidOperationException($"既に問題フォルダがあります: {directory}");
+        var existingDirectory = FindExistingDirectory(problem);
+        if (existingDirectory is not null)
+            throw new InvalidOperationException($"既に問題フォルダがあります: {existingDirectory}");
 
+        var directory = Path.Combine(ProblemsRoot, problem.ContestId, problem.Id);
         Directory.CreateDirectory(directory);
         var problemUrl = $"https://atcoder.jp/contests/{problem.ContestId}/tasks/{problem.Id}";
         var editorialUrl = $"https://atcoder.jp/contests/{problem.ContestId}/editorial";
@@ -60,14 +66,24 @@ internal sealed class FileProblemWorkspace(string root) : IProblemWorkspace
 
     public async Task<string> SaveStatementAsync(ProblemEntry problem, string markdown)
     {
-        var directory = Path.Combine(ProblemsRoot, problem.ContestId, problem.Id);
-        if (!Directory.Exists(directory))
-            throw new InvalidOperationException($"問題フォルダがありません: {directory}");
+        var directory = FindExistingDirectory(problem)
+            ?? throw new InvalidOperationException(
+                $"問題フォルダがありません: {Path.Combine(ProblemsRoot, problem.ContestId, problem.Id)}");
 
         var path = Path.Combine(directory, "statement.md");
         var temporaryPath = path + ".tmp";
         await File.WriteAllTextAsync(temporaryPath, markdown);
         File.Move(temporaryPath, path, overwrite: true);
         return path;
+    }
+
+    private string? FindExistingDirectory(ProblemEntry problem)
+    {
+        foreach (var problemsRoot in ProblemRoots)
+        {
+            var directory = Path.Combine(problemsRoot, problem.ContestId, problem.Id);
+            if (Directory.Exists(directory)) return directory;
+        }
+        return null;
     }
 }

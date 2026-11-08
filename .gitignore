@@ -4,6 +4,8 @@ problems/**/statement.html
 problems/**/statement.html.tmp
 problems/**/statement.md
 problems/**/statement.md.tmp
+atcoder_problems/**/statement.md
+atcoder_problems/**/statement.md.tmp
 **/bin/
 **/obj/
 

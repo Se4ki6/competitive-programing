@@ -5,7 +5,7 @@ AtCoderの問題をC#で解き、問題ごとの学習記録を残すリポジ�
 ## 構成
 
 - `tools/AtCoderStudy/`: 問題検索、AtCoder Problems APIとの同期、問題フォルダ作成を行う.NET 10のCLI。
-- `problems/<contest_id>/<problem_id>/`: 1問分の記録。`Program.cs` はユーザーの解答、`README.md` は問題の要約と考察、`editorial.md` は模範解答との比較に使います。
+- `atcoder_problems/<contest_id>/<problem_id>/`: 1問分の記録。`Program.cs` はユーザーの解答、`README.md` は問題の要約と考察、`editorial.md` は模範解答との比較に使います。
 - `appsettings.local.json`: 個人設定。`AtCoder.UserId` を読み込みます。追跡する設定例は `appsettings.example.json` です。
 - `.study/`: APIから取得したローカルキャッシュ。個人設定とキャッシュはGitに含めません。
 
