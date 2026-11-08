@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 1110" role="img" aria-labelledby="title description">
+  <title id="title">ABC480 B Invalid Vote の解法の流れ</title>
+  <desc id="description">投票を1枚読み、候補者名と完全一致すれば加算する。一致しない場合、同じ長さで1文字だけ違う候補者がちょうど1人なら加算し、それ以外は無効票にする。全投票を処理した後、候補者順に票数を出力する。</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="9" markerHeight="9" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#475569" />
+    </marker>
+  </defs>
+
+  <rect width="1200" height="1110" fill="#f8fafc" />
+  <text x="600" y="59" text-anchor="middle" fill="#0f172a" font-family="sans-serif" font-size="34" font-weight="700">ABC480 B｜投票の判定フロー</text>
+  <text x="600" y="100" text-anchor="middle" fill="#475569" font-family="sans-serif" font-size="21">1枚ずつ判定して、候補者ごとの票数を数える</text>
+
+  <rect x="405" y="135" width="390" height="72" rx="18" fill="#dbeafe" stroke="#2563eb" stroke-width="3" />
+  <text x="600" y="181" text-anchor="middle" fill="#1e3a8a" font-family="sans-serif" font-size="27" font-weight="700">投票を1枚読む</text>
+
+  <path d="M 600 240 L 870 310 L 600 380 L 330 310 Z" fill="#fef3c7" stroke="#d97706" stroke-width="3" />
+  <text x="600" y="317" text-anchor="middle" fill="#78350f" font-family="sans-serif" font-size="27" font-weight="700">候補者名と完全一致？</text>
+
+  <rect x="895" y="265" width="250" height="88" rx="18" fill="#dcfce7" stroke="#16a34a" stroke-width="3" />
+  <text x="1020" y="301" text-anchor="middle" fill="#166534" font-family="sans-serif" font-size="24" font-weight="700">その候補者に</text>
+  <text x="1020" y="332" text-anchor="middle" fill="#166534" font-family="sans-serif" font-size="24" font-weight="700">1票を加算</text>
+
+  <rect x="405" y="440" width="390" height="102" rx="18" fill="#dbeafe" stroke="#2563eb" stroke-width="3" />
+  <text x="600" y="480" text-anchor="middle" fill="#1e3a8a" font-family="sans-serif" font-size="24" font-weight="700">全候補者と比較</text>
+  <text x="600" y="515" text-anchor="middle" fill="#1e3a8a" font-family="sans-serif" font-size="21">同じ長さで、違う文字が1個か</text>
+
+  <path d="M 600 580 L 870 660 L 600 740 L 330 660 Z" fill="#fef3c7" stroke="#d97706" stroke-width="3" />
+  <text x="600" y="650" text-anchor="middle" fill="#78350f" font-family="sans-serif" font-size="26" font-weight="700">該当する候補者は</text>
+  <text x="600" y="684" text-anchor="middle" fill="#78350f" font-family="sans-serif" font-size="26" font-weight="700">ちょうど1人？</text>
+
+  <rect x="55" y="618" width="250" height="84" rx="18" fill="#fee2e2" stroke="#dc2626" stroke-width="3" />
+  <text x="180" y="654" text-anchor="middle" fill="#991b1b" font-family="sans-serif" font-size="24" font-weight="700">無効票</text>
+  <text x="180" y="683" text-anchor="middle" fill="#991b1b" font-family="sans-serif" font-size="20">加算しない</text>
+
+  <rect x="895" y="618" width="250" height="84" rx="18" fill="#dcfce7" stroke="#16a34a" stroke-width="3" />
+  <text x="1020" y="653" text-anchor="middle" fill="#166534" font-family="sans-serif" font-size="24" font-weight="700">その候補者に</text>
+  <text x="1020" y="683" text-anchor="middle" fill="#166534" font-family="sans-serif" font-size="24" font-weight="700">1票を加算</text>
+
+  <rect x="405" y="850" width="390" height="90" rx="18" fill="#e0e7ff" stroke="#4f46e5" stroke-width="3" />
+  <text x="600" y="889" text-anchor="middle" fill="#3730a3" font-family="sans-serif" font-size="25" font-weight="700">次の投票へ</text>
+  <text x="600" y="922" text-anchor="middle" fill="#3730a3" font-family="sans-serif" font-size="20">全 M 枚について繰り返す</text>
+
+  <rect x="380" y="1000" width="440" height="76" rx="18" fill="#dbeafe" stroke="#2563eb" stroke-width="3" />
+  <text x="600" y="1046" text-anchor="middle" fill="#1e3a8a" font-family="sans-serif" font-size="24" font-weight="700">候補者順に票数を出力</text>
+
+  <g fill="none" stroke="#475569" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M 600 207 V 236" marker-end="url(#arrow)" />
+    <path d="M 870 310 H 891" marker-end="url(#arrow)" />
+    <path d="M 600 380 V 436" marker-end="url(#arrow)" />
+    <path d="M 600 542 V 576" marker-end="url(#arrow)" />
+    <path d="M 330 660 H 309" marker-end="url(#arrow)" />
+    <path d="M 870 660 H 891" marker-end="url(#arrow)" />
+    <path d="M 1145 309 H 1170 V 805 H 600" />
+    <path d="M 1020 702 V 805 H 600" />
+    <path d="M 180 702 V 805 H 600" />
+    <path d="M 600 805 V 846" marker-end="url(#arrow)" />
+    <path d="M 600 940 V 996" marker-end="url(#arrow)" />
+  </g>
+
+  <g fill="#475569" font-family="sans-serif" font-size="19" font-weight="700">
+    <text x="878" y="286">はい</text>
+    <text x="617" y="416">いいえ</text>
+    <text x="257" y="636">いいえ</text>
+    <text x="878" y="635">はい</text>
+    <text x="618" y="975">全票の処理後</text>
+  </g>
+</svg>
