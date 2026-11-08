@@ -35,8 +35,8 @@ internal sealed class FileProblemWorkspace(string root) : IProblemWorkspace
         var editorialUrl = $"https://atcoder.jp/contests/{problem.ContestId}/editorial";
         var difficulty = problem.Difficulty?.ToString("F0") ?? "不明";
 
-        await File.WriteAllTextAsync(Path.Combine(directory, "README.md"),
-            $"# {problem.ContestId.ToUpperInvariant()} {problem.Index}: {problem.Title}\n\n" +
+        await File.WriteAllTextAsync(Path.Combine(directory, "my-solution.md"),
+            $"# 自分の解答: {problem.ContestId.ToUpperInvariant()} {problem.Index}: {problem.Title}\n\n" +
             $"- 問題: {problemUrl}\n- ローカル問題文: `statement.md`（Git管理外）\n" +
             $"- 推定難易度: {difficulty}\n\n" +
             "## 問題の要約\n\n\n## 自分の方針\n\n\n## 計算量\n\n\n## 提出・振り返り\n\n");
@@ -54,11 +54,11 @@ internal sealed class FileProblemWorkspace(string root) : IProblemWorkspace
             "  </PropertyGroup>\n" +
             "</Project>\n");
 
-        await File.WriteAllTextAsync(Path.Combine(directory, "editorial.md"),
-            "# 模範解答との比較\n\n" +
+        await File.WriteAllTextAsync(Path.Combine(directory, "model-solution.md"),
+            "# 模範解答とフィードバック\n\n" +
             $"- コンテスト解説: {editorialUrl}\n\n" +
-            "## 解法の要点\n\n\n## 自分の解答との差\n\n\n## 参考実装・別解\n\n" +
-            "必要に応じて、出典リンクと自分で整理したC#の実装を記録する。\n\n" +
+            "## 参照元と実装の由来\n\n\n## 解法の要点と正しさ\n\n\n## 計算量\n\n\n" +
+            "## C#の実装\n\n\n## 自分の解答へのフィードバック\n\n\n" +
             "## 次に解くときの着眼点\n\n");
 
         return directory;

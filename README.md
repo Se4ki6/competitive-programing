@@ -76,13 +76,13 @@ dotnet run --project tools/AtCoderStudy -- start abc300_b
 
 ```text
 atcoder_problems/abc300/abc300_b/
-├── README.md        # 問題リンク、要約、自分の方針と振り返り
+├── my-solution.md   # 問題リンク、要約、自分の方針と振り返り
 ├── Program.cs       # 自分のC#解答
 ├── Solution.csproj  # ローカル実行用
-└── editorial.md     # 模範解答の要点、参考リンク、自分の解答との比較
+└── model-solution.md # 模範解答と自分の解答へのフィードバック
 ```
 
-解答は `dotnet run --project atcoder_problems/abc300/abc300_b/Solution.csproj` で実行できます。AtCoderへ提出するときは `Program.cs` のコードを提出します。`README.md` に問題文の要約を自分の言葉で記録し、問題本文と模範解答の参照先には公式リンクを使います。
+解答は `dotnet run --project atcoder_problems/abc300/abc300_b/Solution.csproj` で実行できます。AtCoderへ提出するときは `Program.cs` のコードを提出します。`my-solution.md` に問題文の要約を自分の言葉で記録し、模範解答を確認したら `model-solution.md` に出典、C#の実装とフィードバックを記録します。既存の問題フォルダは自動変換せず、旧形式の `README.md` や `editorial.md` もそのまま残します。
 
 ## 公式問題文を保存する
 
